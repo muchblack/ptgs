@@ -9,10 +9,18 @@ use App\Http\Controllers\Admin\IndexYoutubeController;
 use App\Http\Controllers\Admin\PictureWallController;
 use App\Http\Controllers\Admin\NewsController;
 use \App\Http\Middleware\CheckUserLogin;
+use App\Http\Controllers\FrontController;
 
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use App\Http\Requests\AdvPostRequest;
 
+
+Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('/newsList',[FrontController::class, 'newsList'])->name('newsList');
+Route::get('/newsDetail/{id}',[FrontController::class, 'newsDetail'])->name('newsDetail');
+
+
+//後台
 Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('login');
 Route::post('/admin/login', [AdminController::class, 'actLogin']);
 Route::get('/admin/logout', function(){

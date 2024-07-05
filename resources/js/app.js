@@ -1,7 +1,7 @@
 import './bootstrap'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
-import CKEditor from '@ckeditor/ckeditor5-vue'
+import { createPinia } from 'pinia';
 
 createInertiaApp({
     resolve: name => {
@@ -11,7 +11,7 @@ createInertiaApp({
     setup({el, App, props, plugin}) {
         createApp({render: () => h(App, props)})
             .use(plugin)
-            .use(CKEditor)
+            .use(createPinia())
             .mount(el)
     },
 }).then()
