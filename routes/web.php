@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
@@ -6,10 +8,18 @@ use App\Http\Controllers\Admin\AdvertisesController;
 use App\Http\Controllers\Admin\IndexYoutubeController;
 use App\Http\Controllers\Admin\PictureWallController;
 use App\Http\Controllers\Admin\NewsController;
+use \App\Http\Middleware\CheckUserLogin;
 
-Route::prefix('admin')->group(function() {
-    Route::get('/', [AdminController::class, 'adminLogin'])->name('admin.index');
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
+use App\Http\Requests\AdvPostRequest;
 
+Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('login');
+Route::post('/admin/login', [AdminController::class, 'actLogin']);
+Route::get('/admin/logout', function(){
+    Auth::logout();
+    return redirect('/admin/login');
+});
+Route::prefix('admin')->middleware([CheckUserLogin::class])->group(function() {
     //新聞
     Route::get('/news', [NewsController::class, 'newsList'])->name('news.list');
     Route::get('/news/add', [NewsController::class, 'newsAdd']);
@@ -20,10 +30,24 @@ Route::prefix('admin')->group(function() {
 
     //廣告
     Route::get('/adv', [AdvertisesController::class, 'advList']);
+    Route::get('/adv/edit/{position}', [AdvertisesController::class, 'advEdit']);
+
+    Route::post('/adv/edit', function(AdvPostRequest $request) {
+        $adv = new AdvertisesController();
+        $adv->modify($request);
+    })
+    ->middleware([HandlePrecognitiveRequests::class]);
+
+    Route::post('/adv/picUpload', [AdvertisesController::class, 'uploadPic']);
 
     //首頁影片
     Route::get('/yt/', [IndexYoutubeController::class, 'ytList']);
+    Route::post('/yt/add',[IndexYoutubeController::class, 'ytAdd']);
+    Route::post('/yt/del/{id}',[IndexYoutubeController::class, 'ytDel']);
 
     //照片列表
-    Route::get('/picwall/', [IndexYoutubeController::class, 'picList']);
+    Route::get('/picWall/', [PictureWallController::class, 'picList']);
+    Route::post('/picWall/picUpload', [PictureWallController::class, 'uploadPic']);
+    Route::post('/picWall', [PictureWallController::class, 'actPicAdd']);
+    Route::post('/picWall/del/{id}',[PictureWallController::class, 'picDel']);
 });

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title', 30)->comment('影片title');
             $table->text('ytLink')->comment('影片link');
-            $table->enum('status', ['temp', 'pub', 'del'])->default('temp')->comment('影片狀態');
             $table->timestamps();
         });
     }

@@ -42,13 +42,12 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request)
     {
+        if( ($request->path() === 'admin/login') ) {
+            return 'login';
+        }
+
         if($request->route()->getPrefix() === '/admin')
         {
-            //如果是登入頁面的話，使用登入用blade
-            if( ($request->path() === 'admin') ) {
-                return 'login';
-            }
-
             return 'admin';
         }
 

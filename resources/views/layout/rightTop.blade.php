@@ -31,8 +31,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <h6 class="mb-0">1234</h6>
-                                        <small class="text-muted">5678</small>
+                                        <h6 class="mb-0">{{ Auth::user()->userName }}</h6>
                                     </div>
                                 </div>
                             </a>
@@ -41,17 +40,7 @@
                             <div class="dropdown-divider my-1"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/profile/1234">
-                                <i class="mdi mdi-cog-outline me-1 mdi-20px"></i>
-                                <span class="align-middle">個人設定</span>
-{{--                                <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>--}}
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider my-1"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/logout">
+                            <a class="dropdown-item" href="/admin/logout">
                                 <i class="mdi mdi-power me-1 mdi-20px"></i>
                                 <span class="align-middle">登出</span>
                             </a>

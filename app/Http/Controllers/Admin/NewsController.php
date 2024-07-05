@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Traits\uploadImg;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Services\NewsService;
 
 class NewsController extends Controller
 {
+    use uploadImg;
     public function __construct(NewsService $newsService)
     {
         $this->newsService = $newsService;
@@ -44,8 +47,10 @@ class NewsController extends Controller
         return $this->newsService->modifyNews($data);
     }
 
-    public function picUpload(Request $request){
-        $path = $this->newsService->uploadImg($request->file('file'));
+    public function picUpload(Request $request): \Illuminate\Http\JsonResponse
+    {
+//        $path = $this->newsService->uploadImg($request->file('file'));
+        $path = $this->uploadImg($request->file('file'), 'news');
         return response()->json(['location' => $path]);
     }
 }

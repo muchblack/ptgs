@@ -17,6 +17,10 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/base.css',
+                'resources/css/index.scss',
+                'resources/css/main.css',
+                'resources/css/newsList.scss',
                 'resources/js/app.js',
                 'resources/asset/vendor/fonts/materialdesignicons.css',
                 'resources/asset/vendor/libs/node-waves/node-waves.css',

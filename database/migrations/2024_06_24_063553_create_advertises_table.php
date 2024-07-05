@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('advTitle',30)->comment('廣告標題');
             $table->text('advImgUrl')->comment('廣告圖片URL');
+            $table->text('advLink')->comment('廣告圖片URL');
             $table->string('advPosition')->comment('廣告欄位位置');
-            $table->enum('status', ['temp', 'pub', 'del'])->default('temp')->comment('廣告狀態');
             $table->timestamps();
         });
     }

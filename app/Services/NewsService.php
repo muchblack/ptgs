@@ -76,9 +76,4 @@ class NewsService
 
         return 'success';
     }
-
-    public function uploadImg($objImage)
-    {
-        return Storage::disk('news')->url(Storage::disk('news')->put('/', $objImage));
-    }
 }

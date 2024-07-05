@@ -48,22 +48,36 @@
 </template>
 
 <script setup>
+const user_email = defineModel('user_email')
+const user_pwd = defineModel('user_pwd')
+const isShowMsg = defineModel('isShowMsg', {default: false})
+const returnMsg = defineModel('returnMsg')
 
-</script>
-
-<script>
-export default {
-    data() {
-        return {
-            user_email:'',
-            user_pwd:'',
-            isShowMsg: false,
-            returnMsg: '',
+async function login()
+{
+    const formData = new FormData();
+    formData.append('email', user_email.value)
+    formData.append('password', user_pwd.value);
+    await axios.post(
+        '/admin/login',
+        formData
+    ).then( response => {
+        window.location.href = '/admin/news'
+    }).catch( error => {
+        let msgs = error.response.data;
+        console.log(msgs);
+        if( 'email' in msgs )
+        {
+            document.getElementById('user_email').classList.add('is-invalid')
+            isShowMsg.value = true;
+            returnMsg.value = 'Email格式不對';
         }
-    }
+        else{
+            isShowMsg.value = true;
+            returnMsg.value = msgs.errors.accountError;
+        }
+    })
+
 }
+
 </script>
-
-<style scoped>
-
-</style>

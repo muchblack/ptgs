@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('picture_walls', function (Blueprint $table) {
             $table->id();
-            $table->text('ytLink')->comment('影片link');
+            $table->text('picURL')->comment('圖片link');
             $table->enum('status', ['temp', 'pub', 'del'])->default('temp')->comment('影片狀態');
             $table->timestamps();
         });

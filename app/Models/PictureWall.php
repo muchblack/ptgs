@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PictureWall extends Model
 {
     use HasFactory;
+    protected $table='picture_walls';
+    protected $fillable = [
+        'picURL',
+        'status'
+    ];
 }

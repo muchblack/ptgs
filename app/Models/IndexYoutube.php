@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class IndexYoutube extends Model
 {
     use HasFactory;
+    protected $table = 'index_youtubes';
+    protected $fillable = [
+      'title',
+      'ytLink'
+    ];
 }

@@ -24,13 +24,13 @@
             <span class="menu-header-text">廣告</span>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="/admin/adv" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-advertisements"></i>
                 <div data-i18n="Basic">廣告列表</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="/admin/yt" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-youtube-tv"></i>
                 <div data-i18n="Basic">首頁影片</div>
             </a>
@@ -39,7 +39,7 @@
             <span class="menu-header-text">照片牆</span>
         </li>
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="/admin/picWall/" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-panorama-variant-outline"></i>
                 <div data-i18n="Basic">照片列表</div>
             </a>
