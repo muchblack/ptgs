@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdvPostRequest;
+use App\Http\Requests\advUploadRequest;
 use App\Services\AdvertisesService;
 use App\Traits\uploadImg;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
-use App\Http\Resources\AdvResource;
 
 class AdvertisesController extends Controller
 {
@@ -19,6 +18,8 @@ class AdvertisesController extends Controller
         'LD'=>'首頁廣告 - 左下',
         'RU'=>'首頁廣告 - 右上',
         'RD'=>'首頁廣告 - 右下',
+        'IU'=>'內頁廣告 - 上',
+        'PD'=>'內頁廣告 - 下',
     ];
     public function __construct()
     {
@@ -61,9 +62,9 @@ class AdvertisesController extends Controller
         }
     }
 
-    public function uploadPic(Request $request): \Illuminate\Http\JsonResponse
+    public function uploadPic(advUploadRequest $request): \Illuminate\Http\JsonResponse
     {
-        $path = $this->uploadImg($request->file('file'), 'advImg');
+        $path = $this->uploadImg($request->file('file'), 'advImg', true, ['width' => 280]);
         return response()->json(['imgPath'=> $path]);
     }
 }

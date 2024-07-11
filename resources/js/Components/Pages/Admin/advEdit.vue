@@ -88,6 +88,7 @@ async function uploadPic(e){
     const objImg = e.target.files.item(0);
     const formData = new FormData();
     formData.append('file', objImg);
+    formData.append('position', props.position);
     await axios.post('/admin/adv/picUpload',formData, {
         headers:{
             'Content-Type': 'multipart/form-data'

@@ -11,6 +11,12 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+        <li class="menu-item">
+            <a href="/" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-newspaper"></i>
+                <div data-i18n="Basic">回到前台</div>
+            </a>
+        </li>
         <li class="menu-header fw-medium mt-4">
             <span class="menu-header-text">新聞</span>
         </li>
@@ -42,6 +48,15 @@
             <a href="/admin/picWall/" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-panorama-variant-outline"></i>
                 <div data-i18n="Basic">照片列表</div>
+            </a>
+        </li>
+        <li class="menu-header fw-medium mt-4">
+            <span class="menu-header-text">設定</span>
+        </li>
+        <li class="menu-item">
+            <a href="/admin/indexSet/" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-panorama-variant-outline"></i>
+                <div data-i18n="Basic">頁面設定</div>
             </a>
         </li>
     </ul>

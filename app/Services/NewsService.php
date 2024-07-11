@@ -39,6 +39,14 @@ class NewsService
         return $result;
     }
 
+    public function getIndexNews(){
+        return $this->_newsModel->where('newsStatus', 'pub')->orderBy('created_at', 'desc')->limit(6)->get();
+    }
+
+    public function getNewsList()
+    {
+        return $this->_newsModel->where('newsStatus', 'pub')->orderBy('created_at', 'desc')->get();
+    }
     public function getNews($id)
     {
         return $this->_newsModel->find($id)->toArray();
@@ -52,6 +60,7 @@ class NewsService
                 ->where('id',$data['newsID'])
                 ->update([
                     'newsTitle' => $data['newsTitle'],
+                    'newsPicUrl' => $data['newsPicUrl'],
                     'newsContent' => $data['newsContent'],
                     'newsStatus' => $data['newsStatus'],
                 ]);
@@ -60,6 +69,7 @@ class NewsService
         {
             $news = $this->_newsModel->create([
                 'newsTitle' => $data['newsTitle'],
+                'newsPicUrl' => $data['newsPicUrl'],
                 'newsContent' => $data['newsContent'],
                 'newsStatus' => $data['newsStatus']
             ]);

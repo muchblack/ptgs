@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class IndexSet extends Model
 {
     use HasFactory;
-    protected $table = 'news';
-    protected $fillable = [
-        'newsTitle',
-        'newsPicUrl',
-        'newsContent',
-        'newsStatus'
-    ];
 
+    protected  $table = 'index_sets';
+    protected $fillable = [
+        'position',
+        'url'
+    ];
 }

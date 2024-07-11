@@ -17,6 +17,14 @@ const props = defineProps(['title','data', 'csrf'])
                             <input type="text" class="form-control" id="newsTitle" placeholder="新聞標題" v-model="newsTitle" />
                             <label for="basic-default-fullname">新聞標題</label>
                         </div>
+                        <div class="form-floating form-floating-outline mb-4">
+                            <input class="form-control" type="file" id="advImgUrl" @change="uploadPic">
+                            <input type="hidden" v-model="newsPicUrl">
+                            <label for="advImg" class="form-label">新聞縮圖</label>
+                            <div class="col-md-6 col-lg-4 mg-4">
+                                <img class="img-fluid d-flex mx-auto my-4 rounded" :src="newsPicUrl" alt="">
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label for="defaultSelect" class="form-label">新聞狀態</label>
                             <select id="defaultSelect" class="form-select" v-model="newsStatus">
@@ -52,6 +60,7 @@ export default{
             newsTitle : this.data.newsTitle,
             newsStatus: this.data.newsStatus ?? 'temp',
             newsContent: this.data.newsContent ?? '',
+            newsPicUrl: '',
             news_status_list:[
                 {
                     name:'草稿',
@@ -74,6 +83,7 @@ export default{
             formData.append('newsTitle', this.newsTitle);
             formData.append('newsStatus', this.newsStatus);
             formData.append('newsContent', this.newsContent);
+            formData.append('newsPicUrl', this.newsPicUrl);
             formData.append('newsID', this.data.id ?? 0);
             await axios.post('/admin/news/add',
                 formData,
@@ -87,6 +97,19 @@ export default{
                     location.href='/admin/news'
                 }
             )
+        },
+        async uploadPic(e){
+            const objImg = e.target.files.item(0);
+            const formData = new FormData();
+            formData.append('file', objImg);
+            await axios.post('/admin/news/picUpload',formData, {
+                headers:{
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then( response => {
+                // console.log(response.data.imgPath)
+                this.newsPicUrl = response.data.location;
+            });
         }
     }
 }

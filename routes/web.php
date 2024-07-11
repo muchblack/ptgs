@@ -58,4 +58,9 @@ Route::prefix('admin')->middleware([CheckUserLogin::class])->group(function() {
     Route::post('/picWall/picUpload', [PictureWallController::class, 'uploadPic']);
     Route::post('/picWall', [PictureWallController::class, 'actPicAdd']);
     Route::post('/picWall/del/{id}',[PictureWallController::class, 'picDel']);
+
+    Route::get('/indexSet/',[AdminController::class, 'indexSet']);
+    Route::get('/indexSet/edit/{position}', [AdminController::class, 'indexSetEdit']);
+    Route::post('/indexSet/edit', [AdminController::class, 'actIndexSet']);
+    Route::post('/indexSet/upload', [AdminController::class, 'indexSetUpload']);
 });

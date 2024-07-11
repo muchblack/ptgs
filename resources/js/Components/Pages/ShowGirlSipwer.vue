@@ -1,6 +1,6 @@
 <template >
   <div class="swiper_main" v-if="isImgSwiperOpen">
-    
+
     <swiper
       :modules="modules"
       :navigation="true"
@@ -16,7 +16,7 @@
     >
       <swiper-slide v-for="img in props.showGirlList">
         <div class="zoom_img_container" @click="clickToCloseZoom()">
-          <img :src="img.imgUrl" alt="" />
+          <img :src="img.picURL" alt="" />
         </div>
       </swiper-slide>
       <!-- <swiper-slide>Slide 2</swiper-slide>
@@ -28,7 +28,7 @@
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { defineProps , watch } from 'vue';
+import { watch } from 'vue';
 
 import 'swiper/css';
 import 'swiper/css/navigation';

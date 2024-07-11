@@ -58,8 +58,9 @@
                                 <label for="basic-default-fullname">影片標題</label>
                             </div>
                             <div class="form-floating form-floating-outline mb-4">
-                                <input type="text" class="form-control" id="ytLink" placeholder="影片鏈接" v-model="ytLink"/>
-                                <label for="basic-default-fullname">影片鏈接</label>
+                                <textarea style="height:200px" v-model="ytLink" class="form-control" id="ytLink"></textarea>
+                                <label for="basic-default-fullname">影片嵌入碼</label>
+                                <samll class="text-danger">請修改嵌入碼內的 width爲980 height爲550才能爲最佳呈現</samll>
                             </div>
                         </form>
                     </div>

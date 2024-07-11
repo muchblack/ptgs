@@ -15,8 +15,6 @@
           <img :src="img.imgUrl" alt="" />
         </div>
       </swiper-slide>
-      <!-- <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide> -->
     </swiper>
   </div>
 </template>
@@ -24,7 +22,7 @@
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { defineProps , watch } from 'vue';
+import { watch } from 'vue';
 
 
 

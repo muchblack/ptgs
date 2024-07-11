@@ -27,6 +27,18 @@ class AdvertisesService
         return $adv;
     }
 
+    public function getAdvertiseByPosition($position)
+    {
+        if($position == 'index')
+        {
+            return $this->advModel->whereIn('advPosition',['LU', 'LD', 'RU', 'RD'])->get()->groupBy('advPosition');
+        }
+        else
+        {
+            return $this->advModel->whereIn('advPosition',['IU', 'PD'])->get()->groupBy('advPosition');
+        }
+    }
+
     public function modifyAdv($params)
     {
         $position = $params['advPosition'];

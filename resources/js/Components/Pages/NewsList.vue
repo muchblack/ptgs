@@ -15,15 +15,15 @@
         <section class="nav_logo_container">
           <div class="top_nav_logo">
 <!--            <router-link to="/">-->
-              <img
-                loading="lazy"
-                decoding="async"
-                width="674"
-                height="163"
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/08/基地XTGS_LOGO_白.png"
-                class=""
-                alt=""
-              />
+<!--              <img-->
+<!--                loading="lazy"-->
+<!--                decoding="async"-->
+<!--                width="674"-->
+<!--                height="163"-->
+<!--                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/08/基地XTGS_LOGO_白.png"-->
+<!--                class=""-->
+<!--                alt=""-->
+<!--              />-->
 <!--            </router-link>-->
           </div>
 
@@ -87,7 +87,7 @@
       <div class="news_pagination">
         <div class="page_btn" v-for="(pagination,index) in newsList">
 <!--          <router-link :class="{isNowPage: pageNow - 1 === index }" :to="'/newslist?page=' + pagination.page">-->
-<!--            {{ // pagination.page }}-->
+<!--            {{ pagination.page }}-->
 <!--          </router-link>-->
         </div>
       </div>
@@ -98,11 +98,11 @@
 <script>
 // import { useMeta } from 'vue-meta';
 
-// export default {
-//   setup () {
-//     useMeta({ title: 'Single Page' });
-//   }
-// };
+export default {
+  setup () {
+    // useMeta({ title: 'Single Page' });
+  }
+};
 </script>
 
 <script setup>
@@ -110,27 +110,27 @@
 // import { useRoute } from 'vue-router';
 import { ref ,watch } from 'vue';
 
-useMeta({ title: '東京電玩展快訊' });
+// useMeta({ title: '東京電玩展快訊' });
 
-const route = useRoute();
-console.log(route);
-console.log(route.query);
-
+// const route = useRoute();
+// console.log(route);
+// console.log(route.query);
+//
 let newsList = [];
 let pageNow = ref(1);
 let showNews = ref(null);
-
-
-pageNow = route.query.page;
-
-console.log(pageNow);
-
-watch(() => route.query.page,(newPageNow) =>{
-console.log(newPageNow);
-pageNow = route.query.page;
-showNews.value = newsList[newPageNow - 1].news;
-console.log(showNews);
-});
+//
+//
+// pageNow = route.query.page;
+//
+// console.log(pageNow);
+//
+// watch(() => route.query.page,(newPageNow) =>{
+// console.log(newPageNow);
+// pageNow = route.query.page;
+// showNews.value = newsList[newPageNow - 1].news;
+// console.log(showNews);
+// });
 
 
 newsList = [{
@@ -400,6 +400,5 @@ showNews.value = newsList[pageNow - 1].news;
 </script>
 
 <style lang="scss" scoped>
-//@import '../assets/newsList.scss';
 @import '../../../css/newsList.scss';
 </style>

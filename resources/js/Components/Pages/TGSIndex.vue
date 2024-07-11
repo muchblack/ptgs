@@ -7,7 +7,7 @@
         muted=""
         playsinline=""
         loop=""
-        src="https://image.gamebase.com.tw/i.gbc.tw/i.gbc.tw/gb_tw/static/index/0921_TGS_OP_V6_2.mp4"
+        :src="data.indexSet ? data.indexSet.url : '' "
 
       ></video>
       <div class="top_nav_title_container">
@@ -105,17 +105,17 @@
       <div class="news_content">
         <div class="left_AD">
           <div class="AD_280x230">
-            <a href="#">
+            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.LU[0].advLink : '#'">
               <img
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/300X250.jpg"
+                :src="props.data.advDatas ?  props.data.advDatas.LU[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
           </div>
           <div class="AD_280x600">
-            <a href="#">
+            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.LD[0].advLink : '#'">
               <img
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/300x600.jpg"
+                :src="props.data.advDatas ? props.data.advDatas.LD[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
@@ -123,82 +123,56 @@
         </div>
         <div class="news_container">
           <div class="news_card" v-for="news in newsList">
-            <a href="https://news.gamebase.com.tw/TGS2023/?p=2078">
+            <a :href="'/newsDetail/'+ news.id">
               <img
                 loading="lazy"
                 decoding="async"
                 width="300"
                 height="169"
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp"
+                :src="news.newsPicUrl"
                 class=""
                 alt=""
               />
               <div>
                 <h3 class="post_title">
-                  {{ news.title }}
+                  {{ news.newsTitle }}
                 </h3>
                 <div>
-                  <span class="post_time">{{ news.post_time }}</span>
+                  <span class="post_time">{{ moment(news.created_at).format('YYYY-MM-DD HH:mm:ss') }}</span>
                 </div>
                 <span class="see_more_text">閱讀更多 »</span>
               </div>
             </a>
           </div>
           <div class="more_news_btn">
-            <router-link to="/NewsList?page=1"> 更多東京電玩展快訊 </router-link>
+<!--            <router-link to="/NewsList?page=1"> 更多東京電玩展快訊 </router-link>-->
+            <a href="/newsList">更多東京電玩展快訊</a>
           </div>
         </div>
         <div class="right_AD">
           <div class="AD_280x230">
-            <a href="#">
+            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.RU[0].advLink : '#'">
               <img
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/女鬼橋2_小版18.jpg"
+                :src="props.data.advDatas ? props.data.advDatas.RU[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
           </div>
           <div class="AD_280x600">
-            <a href="#">
+            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.RD[0].advLink : '#' ">
               <img
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/遊戲基地_300x562.jpg"
+                :src="props.data.advDatas ? props.data.advDatas.RD[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
           </div>
         </div>
       </div>
-      <div class="live_container" id="live">
-        <div class="live_content" id="live1">
-          <h2>2024東京電玩展搶先看</h2>
+      <div class="live_container">
+        <div class="live_content" v-for="yt in props.data.indexYT">
+          <h2>{{ yt.title }}</h2>
           <div class="news_decorate_line"></div>
-          <div class="live_box">
-            <iframe
-              width="980"
-              height="550"
-              src="https://www.youtube.com/embed/qWrDto_yC-0?si=0-vXx9emV0b1UrNv"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="live_content" id="live2">
-          <h2>現場LIVE直播</h2>
-          <div class="news_decorate_line"></div>
-          <div class="live_box">
-            <iframe
-              width="980"
-              height="550"
-              src="https://www.youtube.com/embed/qWrDto_yC-0?si=0-vXx9emV0b1UrNv"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
+          <div class="live_box" v-html="yt.ytLink"></div>
         </div>
       </div>
       <div class="show_girl_container">
@@ -206,7 +180,7 @@
         <div class="card_container PC_girl_card_container">
           <div class="girl_card" v-for="(card,index) in showGirlList" @click="openImageZoomSwiper(index)">
             <div class="black_mask"></div>
-            <div :style="{ backgroundImage: 'url(' + card.imgUrl + ')' }" @click="openImageZoomSwiper(index)"></div>
+            <div :style="{ backgroundImage: 'url(' + card.picURL + ')' }" @click="openImageZoomSwiper(index)"></div>
           </div>
         </div>
         <div class="card_container mobile_girl_card_container">
@@ -233,108 +207,130 @@
 <script setup>
 // import { useMeta } from 'vue-meta';
 import { ref } from 'vue';
+import moment from "moment";
 
 import ShowGirlSipwer from './ShowGirlSipwer.vue';
 import MobileShowGirlSipwer from './MobileShowGirlSipwer.vue';
 
 // useMeta({ title: '首頁' });
+const props = defineProps([
+    'data'
+])
 
-let newsList = [];
+console.log(props.data)
+
 let showGirlList = [];
+let newsList = [] ;
 
-newsList = [
+let tempNewsList = [
   {
-    title:
+    newsTitle:
       '《奇幻生活 i：轉圈圈的龍和偷取時間的少女》展出小遊戲體驗，更暗藏《奇幻生活 LINK！》彩蛋驚喜,奇幻生活 i：轉圈圈的龍和偷取時間的少女》展出小遊戲體驗，更暗藏《奇幻生活 LINK！》彩蛋驚喜',
-    post_time: '2023 年 9 月 29 日',
-    img: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
+    created_at: '2023 年 9 月 29 日',
+      newsPicUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
     link: ''
   },
   {
-    title:
+    newsTitle:
       '《奇幻生活 i：轉圈圈的龍和偷取時間的少女》展出小遊戲體驗，更暗藏《奇幻生活 LINK！》彩蛋驚喜',
-    post_time: '2023 年 9 月 29 日',
-    img: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
+    created_at: '2023 年 9 月 29 日',
+      newsPicUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
     link: ''
   },
   {
-    title:
+      newsTitle:
       '《奇幻生活 i：轉圈圈的龍和偷取時間的少女》展出小遊戲體驗，更暗藏《奇幻生活 LINK！》彩蛋驚喜',
-    post_time: '2023 年 9 月 29 日',
-    img: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
+      created_at: '2023 年 9 月 29 日',
+      newsPicUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
     link: ''
   },
   {
-    title:
+      newsTitle:
       '《奇幻生活 i：轉圈圈的龍和偷取時間的少女》展出小遊戲體驗，更暗藏《奇幻生活 LINK！》彩蛋驚喜',
-    post_time: '2023 年 9 月 29 日',
-    img: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
+      created_at: '2023 年 9 月 29 日',
+      newsPicUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
     link: ''
   },
   {
-    title:
+      newsTitle:
       '《奇幻生活 i：轉圈圈的龍和偷取時間的少女》展出小遊戲體驗，更暗藏《奇幻生活 LINK！》彩蛋驚喜',
-    post_time: '2023 年 9 月 29 日',
-    img: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
+      created_at: '2023 年 9 月 29 日',
+      newsPicUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
     link: ''
   },
   {
-    title:
+      newsTitle:
       '《奇幻生活 i：轉圈圈的龍和偷取時間的少女》展出小遊戲體驗，更暗藏《奇幻生活 LINK！》彩蛋驚喜',
-    post_time: '2023 年 9 月 29 日',
-    img: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
+      created_at: '2023 年 9 月 29 日',
+      newsPicUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/4312617.webp',
     link: ''
   }
 ];
 
-showGirlList = [
+let tempShowGirlList = [
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
   {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+      picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
     {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+        picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
     {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+        picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
     {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+        picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
     {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+        picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
     {
-    imgUrl: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
+        picURL: 'https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/2023TGS_SG00.jpg'
   },
 
 ];
+
+if(props.data.news.length !== 'undefined')
+{
+    newsList = props.data.news;
+}else
+{
+    newsList = tempNewsList;
+}
+
+if(props.data.picWall.length !== 'undefined')
+{
+    showGirlList = props.data.picWall;
+}else
+{
+    showGirlList = tempShowGirlList;
+}
 
 let clickImgIndex = ref(0);
 let isImgSwiperOpen = ref(false);
@@ -352,5 +348,5 @@ const closeSwiper = ((val)=>{
 
 <style lang="scss" scoped>
 //@import '../assets/index.scss';
-@import '../../../css/index.scss';
+@import "../../../css/index.scss";
 </style>

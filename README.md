@@ -4,6 +4,12 @@
 
 * php8.1以上
 * composer 
+* php-extension
+  + sqlite3
+  + imagick
+  + zip
+  + curl
+  + xml
 
 ## TinyMCE
 因爲有使用到tinyMCE編輯器，故需先取得API Key備用
