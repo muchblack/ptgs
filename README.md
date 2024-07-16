@@ -25,8 +25,10 @@
 4. php artisan key:generate 
 5. php artisan migrate
 6. php artisan createUser <你的email> <你的密碼>
-7. 到 /resources/js/Components/Pages/Admin/newsEditor.vue，找到Editor標籤，將tinyMCE取得的API KEY貼上
-8. npm run build
-9. php artisan projectInit
+7. php artisan storage:link 
+8. php artisan projectInit
+9. 到 /resources/js/Components/Pages/Admin/newsEditor.vue，找到Editor標籤，將tinyMCE取得的API KEY貼上
+10. npm run build
+
 
 安裝大致完成

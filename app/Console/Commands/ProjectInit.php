@@ -74,5 +74,10 @@ class ProjectInit extends Command
             'position' => 'inner',
             'url' => $innerUrl,
         ]);
+
+        //虛擬頭像
+        $avatar = $disk->get('/avatars/1.png');
+        Storage::disk('indexSet')->put('/avatars/1.png', $avatar);
+
     }
 }
