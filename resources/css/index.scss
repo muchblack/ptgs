@@ -10,6 +10,13 @@
     z-index: 999;
   }
   video {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .top_BG{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -328,10 +335,15 @@
 @media screen and (max-width: 1024px){
   .top video{
     height: 100dvh !important;
+    display: block;
+  }
+  .top .top_BG{
+    height: 100dvh !important;
   }
   .top{ 
     .top_nav_title_container{ 
       height: 50%;
+      justify-content: space-between;
       .nav_logo_container{
         padding: 0 5dvw;
               .top_menu{

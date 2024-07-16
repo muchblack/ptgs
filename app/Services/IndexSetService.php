@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\IndexSet;
+use Illuminate\Support\Facades\Storage;
 
 
 class IndexSetService
@@ -14,7 +15,14 @@ class IndexSetService
 
     public function getIndexSet($position)
     {
-        return $this->indexSet->where('position', $position)->first();
+        $data = $this->indexSet->where('position', $position)->first();
+        $objUrl = parse_url($data['url']);
+        $objPath = explode('/', $objUrl['path']);
+        $objImg = $objPath[count($objPath)-1];
+        $imgMimeType = explode('.', $objImg)[1];
+        $data->mimeType = $imgMimeType;
+
+        return $data;
     }
 
     public function modify($params): bool

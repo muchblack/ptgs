@@ -1,42 +1,28 @@
 <template>
   <div class="main">
     <div class="top">
-      <video
-        class=""
-        autoplay=""
-        muted=""
-        playsinline=""
-        loop=""
-        :src="data.indexSet ? data.indexSet.url : '' "
-
-      ></video>
+        <video
+            class=""
+            autoplay=""
+            muted=""
+            playsinline=""
+            loop=""
+            :src="data.indexSet.url"
+            v-if="data.indexSet.mimeType =='mp4'"
+        ></video>
+        <img class="top_BG" v-else :src="data.indexSet.url" alt="" />
       <div class="top_nav_title_container">
         <section class="nav_logo_container">
-          <div class="top_nav_logo">
-            <router-link to='/'>
-              <img
-                loading="lazy"
-                decoding="async"
-                width="674"
-                height="163"
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/08/基地XTGS_LOGO_白.png"
-                class=""
-                alt=""
-              />
-            </router-link>
-          </div>
-
           <nav class="top_menu">
             <ul id="PC_menu" class="">
               <li>
-                <router-link to="/" class="l">首頁</router-link>
+                  <a href="/">首頁</a>
               </li>
               <li>
-                <!-- <a href="https://news.gamebase.com.tw/TGS2023/?cat=1" class="">東京電玩展快訊</a> -->
-                <router-link to="/newslist?page=1" class="location_active"> 東京電玩展快訊 </router-link>
+                  <a href="/newsList/1">電競電玩展快訊</a>
               </li>
               <li>
-                <a href="#live" class="">直播活動</a>
+                <a href="#picWall" class="">活動照片</a>
               </li>
               <li>
                 <a href="https://news.gamebase.com.tw/" class="elementor-item">回基地</a>
@@ -44,78 +30,38 @@
             </ul>
             <ul id="mobile_menu" class="">
               <li>
-                <router-link to="/" class="l">首頁</router-link>
+                  <a href="/">首頁</a>
               </li>
               <li>
-                <!-- <a href="https://news.gamebase.com.tw/TGS2023/?cat=1" class="">東京電玩展快訊</a> -->
-                <router-link to="/newslist?page=1" class="location_active"> TGS快訊 </router-link>
+                  <a href="/newsList/1">電競電玩展快訊</a>
               </li>
               <li>
-                <a href="/#live" class="">直播活動</a>
+                  <a href="#picWall" class="">活動照片</a>
               </li>
             </ul>
           </nav>
-        </section>
-        <section class="logo_liveLink_container">
-          <div class="logo_container">
-            <h1>東京電玩展</h1>
-            <div class="logo_tokyo_game_show">
-              <img
-                decoding="async"
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/TGS-OP-Vertical-V1-LOGO.png"
-                title="TGS OP Vertical V1 LOGO"
-                alt="TGS OP Vertical V1 LOGO"
-                loading="lazy"
-              />
-            </div>
-            <div class="logo_start_TGS">
-              <img
-                loading="lazy"
-                decoding="async"
-                width="800"
-                height="54"
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/開始你的ＴＧＳ之旅，從基地出發！-1.png"
-                class=""
-                alt=""
-              />
-            </div>
-          </div>
-
-          <div class="live_info_container">
-            <a href="#live">
-              <img
-                loading="lazy"
-                decoding="async"
-                width="800"
-                height="412"
-                src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/9_24專頁-1.png"
-                class=""
-                alt=""
-              />
-            </a>
-          </div>
         </section>
       </div>
     </div>
     <div class="main_content">
       <div class="news_container_title">
-        <h2>2024東京電玩展新聞</h2>
+        <h2>Gamers Con 2024 電競電玩展新聞</h2>
         <div class="news_decorate_line"></div>
       </div>
       <div class="news_content">
         <div class="left_AD">
           <div class="AD_280x230">
-            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.LU[0].advLink : '#'">
+            <a :href="props.data.advDatas.LU.length ? 'http://'+props.data.advDatas.LU[0].advLink : '#'">
               <img
-                :src="props.data.advDatas ?  props.data.advDatas.LU[0].advImgUrl : '#'"
+                :src="props.data.advDatas.LU.length ?  props.data.advDatas.LU[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
           </div>
           <div class="AD_280x600">
-            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.LD[0].advLink : '#'">
+            <a :href="props.data.advDatas.LD.length ? 'http://'+props.data.advDatas.LD[0].advLink : '#'">
               <img
-                :src="props.data.advDatas ? props.data.advDatas.LD[0].advImgUrl : '#'"
+                :src="props.data.advDatas.LD.length ? props.data.advDatas.LD[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
@@ -145,23 +91,22 @@
             </a>
           </div>
           <div class="more_news_btn">
-<!--            <router-link to="/NewsList?page=1"> 更多東京電玩展快訊 </router-link>-->
-            <a href="/newsList">更多東京電玩展快訊</a>
+            <a href="/newsList/1">更多Gamers Con 2024快訊</a>
           </div>
         </div>
         <div class="right_AD">
           <div class="AD_280x230">
-            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.RU[0].advLink : '#'">
+            <a :href="props.data.advDatas.RU.length ? 'http://'+props.data.advDatas.RU[0].advLink : '#'">
               <img
-                :src="props.data.advDatas ? props.data.advDatas.RU[0].advImgUrl : '#'"
+                :src="props.data.advDatas.RU.length ? props.data.advDatas.RU[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
           </div>
           <div class="AD_280x600">
-            <a :href="props.data.advDatas ? 'http://'+props.data.advDatas.RD[0].advLink : '#' ">
+            <a :href="props.data.advDatas.RD.length ? 'http://'+props.data.advDatas.RD[0].advLink : '#' ">
               <img
-                :src="props.data.advDatas ? props.data.advDatas.RD[0].advImgUrl : '#'"
+                :src="props.data.advDatas.RD.length ? props.data.advDatas.RD[0].advImgUrl : '#'"
                 alt=""
               />
             </a>
@@ -175,8 +120,9 @@
           <div class="live_box" v-html="yt.ytLink"></div>
         </div>
       </div>
-      <div class="show_girl_container">
-        <h2>2024東京電玩展正妹</h2>
+      <div class="show_girl_container" id="picWall">
+        <h2>Gamers Con 2024 花絮</h2>
+          <div class="news_decorate_line"></div>
         <div class="card_container PC_girl_card_container">
           <div class="girl_card" v-for="(card,index) in showGirlList" @click="openImageZoomSwiper(index)">
             <div class="black_mask"></div>
@@ -209,6 +155,7 @@
 import { ref } from 'vue';
 import moment from "moment";
 
+
 import ShowGirlSipwer from './ShowGirlSipwer.vue';
 import MobileShowGirlSipwer from './MobileShowGirlSipwer.vue';
 
@@ -218,7 +165,7 @@ const props = defineProps([
 ])
 
 console.log(props.data)
-
+console.log(props.data.indexSet)
 let showGirlList = [];
 let newsList = [] ;
 

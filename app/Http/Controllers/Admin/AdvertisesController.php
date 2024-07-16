@@ -20,6 +20,7 @@ class AdvertisesController extends Controller
         'RD'=>'首頁廣告 - 右下',
         'IU'=>'內頁廣告 - 上',
         'PD'=>'內頁廣告 - 下',
+        'DD'=>'內頁廣告 - 底部',
     ];
     public function __construct()
     {

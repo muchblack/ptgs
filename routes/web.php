@@ -16,7 +16,7 @@ use App\Http\Requests\AdvPostRequest;
 
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
-Route::get('/newsList',[FrontController::class, 'newsList'])->name('newsList');
+Route::get('/newsList/{page?}',[FrontController::class, 'newsList'])->name('newsList');
 Route::get('/newsDetail/{id}',[FrontController::class, 'newsDetail'])->name('newsDetail');
 
 

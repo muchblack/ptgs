@@ -14,6 +14,11 @@ class NewsService
         $this->_newsModel = new News();
     }
 
+    private function _getAllPubNews()
+    {
+        return $this->_newsModel->where('newsStatus', 'pub')->orderBy('created_at', 'desc');
+    }
+
     public function getAllNews(): array
     {
         $result = $this->_newsModel->all()->toArray();
@@ -40,16 +45,37 @@ class NewsService
     }
 
     public function getIndexNews(){
-        return $this->_newsModel->where('newsStatus', 'pub')->orderBy('created_at', 'desc')->limit(6)->get();
+        $news = $this->_getAllPubNews();
+        return $news->limit(6)->get();
     }
 
-    public function getNewsList()
+    public function getNewsList(): array
     {
-        return $this->_newsModel->where('newsStatus', 'pub')->orderBy('created_at', 'desc')->get();
+        $news = $this->_getAllPubNews()->get();
+
+        return [
+            'data' => $news->chunk(18),
+            'total' => $news->count()
+        ];
     }
+
+    public function getHotNews()
+    {
+        $news = $this->_getAllPubNews()->get();
+        $total = $news->count();
+        if($total > 0 ){
+            $getNum = rand(0,($total-1));
+            return $news[$getNum];
+        }
+        else
+        {
+            return [];
+        }
+    }
+
     public function getNews($id)
     {
-        return $this->_newsModel->find($id)->toArray();
+        return $this->_newsModel->find($id) ?? [] ;
     }
 
     public function modifyNews($data): string

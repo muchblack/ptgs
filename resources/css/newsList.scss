@@ -9,7 +9,7 @@
     position: relative;
     z-index: 999;
   }
-  .top_video_background{
+  .c{
     position: absolute;
     display: block;
     overflow: hidden;
@@ -18,9 +18,12 @@
     max-height:  655px;
   }
   video {
-    // position: absolute;
+    display: none;
     transform: translate(0, -15%);
     width: 100%
+  }
+  .top_BG{
+    width: 100% 
   }
   .top_nav_title_container {
     width: 100dvw;
@@ -29,6 +32,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: absolute;
+    top: 0;
     .nav_logo_container {
       display: flex;
       width: 100%;
@@ -247,11 +252,7 @@
 @media screen and (max-width: 1024px){
   .top{
     height: 100dvh;
-    .top_nav_title_container{
-      .nav_logo_container{
-        // padding:
-      }
-    }
+
     .top_video_background{
       height: 100dvh;
       max-height: unset;
@@ -261,10 +262,20 @@
         transform: unset;
         transform: translateX(-30dvw);
       }
+      .top_BG{
+        // display: none;
+        width: auto;
+        height: 100dvh;
+        transform: translateX(-145dvw);
+      }
     }
     .top_nav_title_container{
+      position: absolute;
+      top: 0;
       .nav_logo_container{
         padding: 20px;
+        background-color: #000;
+        margin: 0;
         .top_nav_logo{
           width: 25%;
         }
@@ -310,11 +321,19 @@
     height: auto;
     min-height: 300px;
     .top_video_background{
+      position: absolute;
       max-height: 140px;
       top: 110px;
       video{
         height: 27dvh;
         transform: translateY(-55px);
+      }
+    }
+    .top_video_background{
+      .top_BG{
+        width: 100dvw;
+        height: auto;
+        transform: translateX(0vw);
       }
     }
     .top_nav_title_container{

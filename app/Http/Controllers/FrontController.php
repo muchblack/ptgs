@@ -34,16 +34,26 @@ class FrontController extends Controller
             'news' => $news,
             'picWall' => $picWall,
             'indexYT' => $indexYT,
-            'indexSet' => $indexSet
+            'indexSet' => $indexSet,
+            'test' => asset('resources/asset/img/white.jpg')
         ];
         return Inertia::render('TGSIndex', ['data' => $data])->withViewData(['title'=> '首頁']);
     }
 
-    public function newsList(): \Inertia\Response
+    public function newsList($page = 1): \Inertia\Response
     {
-        $news = $this->newsService->getNewsList();
+        $allNews = $this->newsService->getNewsList();
         $indexSet = $this->indexSetService->getIndexSet('inside');
-        return Inertia::render('NewsList', []);
+        $newsList = $allNews['data'][$page-1] ?? [];
+        //pages
+        $totalPage = (int)number_format(ceil($allNews['total']/18));
+        $data = [
+            'newsList' => $newsList,
+            'indexSet' => $indexSet,
+            'totalPage' => $totalPage,
+            'nowPage' => (int) $page
+        ];
+        return Inertia::render('NewsList', ['data' => $data])->withViewData(['title'=>'電競電玩展快訊']);
     }
 
     public function newsDetail($id): \Inertia\Response
@@ -51,10 +61,14 @@ class FrontController extends Controller
         $advDatas = $this->advService->getAdvertiseByPosition('inside');
         $indexSet = $this->indexSetService->getIndexSet('inside');
         $news = $this->newsService->getNews($id);
+        $moreNews = $this->newsService->getIndexNews();
+        $hotNews = $this->newsService->getHotNews();
         $data = [
             'advDatas' => $advDatas,
             'indexSet' => $indexSet,
             'news' => $news,
+            'moreNews' => $moreNews,
+            'hotNews' => $hotNews,
         ];
         return Inertia::render('NewsDetail', ['data'=>$data])->withViewData(['title' => '新聞內頁']);
     }
