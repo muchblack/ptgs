@@ -2,7 +2,7 @@
 
 ## 安裝環境
 
-* php8.1以上
+* php8.2以上
 * composer 
 * php-extension
   + sqlite3
@@ -27,5 +27,6 @@
 6. php artisan createUser <你的email> <你的密碼>
 7. 到 /resources/js/Components/Pages/Admin/newsEditor.vue，找到Editor標籤，將tinyMCE取得的API KEY貼上
 8. npm run build
+9. php artisan projectInit
 
 安裝大致完成

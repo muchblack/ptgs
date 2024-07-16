@@ -5,7 +5,6 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ Vite::asset('resources/asset/img/favicon/favicon.ico') }}" />
     <title> {{ $title ?? "" }}</title>
 
     <!-- Fonts -->
