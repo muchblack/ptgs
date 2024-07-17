@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">首頁上方橫幅</h5>
-                            <a href="/admin/indexSet/edit/index">修改橫幅內容</a>
+                            <a href="/Gamerscon2024/admin/indexSet/edit/index">修改橫幅內容</a>
                         </div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">列表&內頁上方橫幅</h5>
-                            <a href="/admin/indexSet/edit/inside">修改橫幅內容</a>
+                            <a href="/Gamerscon2024/admin/indexSet/edit/inside">修改橫幅內容</a>
                         </div>
                     </div>
                 </div>

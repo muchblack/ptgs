@@ -21,10 +21,10 @@
                   <a href="/">首頁</a>
               </li>
               <li>
-                  <a href="/newsList/1">電競電玩展快訊</a>
+                  <a href="/Gamerscon2024/newsList/1">電競電玩展快訊</a>
               </li>
               <li>
-                  <a href="/#picWall" class="">活動照片</a>
+                  <a href="/Gamerscon2024/#picWall" class="">活動照片</a>
               </li>
               <li>
                 <a href="https://news.gamebase.com.tw/" class="elementor-item">回基地</a>
@@ -35,10 +35,10 @@
                   <a href="/">首頁</a>
               </li>
               <li>
-                  <a href="/newsList/1">電競電玩展快訊</a>
+                  <a href="/Gamerscon2024/newsList/1">電競電玩展快訊</a>
               </li>
               <li>
-                  <a href="/#picWall" class="">活動照片</a>
+                  <a href="/Gamerscon2024/#picWall" class="">活動照片</a>
               </li>
             </ul>
           </nav>
@@ -49,7 +49,7 @@
       <h1>分類：台灣電競電玩展</h1>
       <div class="news_list">
         <div class="news_card" v-for="news in showNews">
-          <a :href="'/newsDetail/'+news.id">
+          <a :href="'/Gamerscon2024/newsDetail/'+news.id">
             <img
               loading="lazy"
               decoding="async"
@@ -72,7 +72,7 @@
       </div>
       <div class="news_pagination">
         <div class="page_btn" v-for=" pages in data.totalPage">
-            <a :class="{isNowPage: data.nowPage === pages }" :href="'/newsList/'+ pages "> {{ pages }}</a>
+            <a :class="{isNowPage: data.nowPage === pages }" :href="'/Gamerscon2024/newsList/'+ pages "> {{ pages }}</a>
         </div>
       </div>
     </div>

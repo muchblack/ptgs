@@ -33,7 +33,7 @@
                                             <i class="mdi mdi-dots-vertical"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" :href="'news/edit/'+item.id"><i class="mdi mdi-pencil me-1"></i> 編輯</a>
+                                            <a class="dropdown-item" :href="'/Gamerscon2024/admin/news/edit/'+item.id"><i class="mdi mdi-pencil me-1"></i> 編輯</a>
                                             <button class="dropdown-item" @click="clkDel(item.id)"><i class="mdi mdi-book me-1"></i>刪除</button>
                                         </div>
                                     </div>
@@ -82,13 +82,13 @@ export default{
     },
     methods: {
         addNews() {
-            location.href='news/add'
+            location.href='/Gamerscon2024/admin/news/add'
         },
         async clkDel(id){
             let formData = new FormData();
             formData.append('newsID', id);
 
-            await axios.post('/admin/news/delete',
+            await axios.post('/Gamerscon2024/admin/news/delete',
                 formData,
                 {
                     headers: {

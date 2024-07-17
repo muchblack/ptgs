@@ -59,10 +59,10 @@ async function login()
     formData.append('email', user_email.value)
     formData.append('password', user_pwd.value);
     await axios.post(
-        '/admin/login',
+        '/Gamerscon2024/admin/login',
         formData
     ).then( response => {
-        window.location.href = '/admin/news'
+        window.location.href = '/Gamerscon2024/admin/news'
     }).catch( error => {
         let msgs = error.response.data;
         console.log(msgs);

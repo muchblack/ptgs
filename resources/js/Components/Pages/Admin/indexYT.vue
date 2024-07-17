@@ -90,7 +90,7 @@ async function addNewYt() {
     formData.append('title', ytTitle);
     formData.append('ytLink', ytLink);
     await axios.post(
-        '/admin/yt/add',
+        '/Gamerscon2024/admin/yt/add',
         formData
     ).then( response => {
         window.location.reload();
@@ -109,7 +109,7 @@ async function addNewYt() {
 
 async function delYt(ytId){
     await axios.post(
-        '/admin/yt/del/'+ytId,
+        '/Gamerscon2024/admin/yt/del/'+ytId,
     ).then( response => {
         window.location.reload();
     });

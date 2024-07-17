@@ -62,7 +62,7 @@ async function savePic(){
     const formData = new FormData();
     formData.append('picURL', picUrl.value)
     await axios.post(
-        '/admin/picWall/',
+        '/Gamerscon2024/admin/picWall/',
         formData
     ).then( response => {
         window.location.reload()
@@ -72,7 +72,7 @@ async function uploadPic(e){
     const objImg = e.target.files.item(0);
     const formData = new FormData();
     formData.append('file', objImg);
-    await axios.post('/admin/picWall/picUpload',formData, {
+    await axios.post('/Gamerscon2024/admin/picWall/picUpload',formData, {
         headers:{
             'Content-Type': 'multipart/form-data'
         }
@@ -83,7 +83,7 @@ async function uploadPic(e){
 
 async function picDel(pid)
 {
-    await axios.post('/admin/picWall/del/'+pid
+    await axios.post('/Gamerscon2024/admin/picWall/del/'+pid
     ).then( response => {
         window.location.reload()
     });

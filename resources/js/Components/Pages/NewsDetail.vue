@@ -21,10 +21,10 @@
                   <a href="/">首頁</a>
               </li>
               <li>
-                  <a href="/newsList/1">電競電玩展快訊</a>
+                  <a href="/Gamerscon2024/newsList/1">電競電玩展快訊</a>
               </li>
               <li>
-                  <a href="/#picWall" class="">活動照片</a>
+                  <a href="/Gamerscon2024/#picWall" class="">活動照片</a>
               </li>
               <li>
                 <a href="https://news.gamebase.com.tw/" class="elementor-item">回基地</a>
@@ -35,10 +35,10 @@
                     <a href="/">首頁</a>
                 </li>
                 <li>
-                    <a href="/newsList/1">電競電玩展快訊</a>
+                    <a href="/Gamerscon2024/newsList/1">電競電玩展快訊</a>
                 </li>
                 <li>
-                    <a href="/#picWall" class="">活動照片</a>
+                    <a href="/Gamerscon2024/#picWall" class="">活動照片</a>
                 </li>
             </ul>
           </nav>
@@ -131,7 +131,7 @@
         </div>
       </div>
       <div class="more_TGS_news_btn">
-            <a href="/newsList/1">更多Gamers Con 2024快訊</a>
+            <a href="/Gamerscon2024/newsList/1">更多Gamers Con 2024快訊</a>
       </div>
       <div class="mobile_bottom_AD">
         <img src="https://news.gamebase.com.tw/TGS2023/wp-content/uploads/2023/09/320x100.jpg" alt="" width="320" height="100">

@@ -43,7 +43,7 @@ class FrontController extends Controller
     public function newsList($page = 1): \Inertia\Response
     {
         $allNews = $this->newsService->getNewsList();
-        $indexSet = $this->indexSetService->getIndexSet('inside');
+        $indexSet = $this->indexSetService->getIndexSet('inner');
         $newsList = $allNews['data'][$page-1] ?? [];
         //pages
         $totalPage = (int)number_format(ceil($allNews['total']/18));
@@ -59,7 +59,7 @@ class FrontController extends Controller
     public function newsDetail($id): \Inertia\Response
     {
         $advDatas = $this->advService->getAdvertiseByPosition('inside');
-        $indexSet = $this->indexSetService->getIndexSet('inside');
+        $indexSet = $this->indexSetService->getIndexSet('inner');
         $news = $this->newsService->getNews($id);
         $moreNews = $this->newsService->getIndexNews();
         $hotNews = $this->newsService->getHotNews();

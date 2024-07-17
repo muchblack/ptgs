@@ -54,10 +54,10 @@ async function submit_indexSet(){
     formData.append('position', props.position);
 
     await axios.post(
-        '/admin/indexSet/edit',
+        '/Gamerscon2024/admin/indexSet/edit',
         formData
     ).then( response => {
-        window.location.href='/admin/indexSet'
+        window.location.href='/Gamerscon2024/admin/indexSet'
     });
 }
 
@@ -65,7 +65,7 @@ async function upload(e){
     const objUpload = e.target.files.item(0);
     const formData = new FormData();
     formData.append('upload', objUpload);
-    await axios.post('/admin/indexSet/upload',formData, {
+    await axios.post('/Gamerscon2024/admin/indexSet/upload',formData, {
         headers:{
             'Content-Type': 'multipart/form-data'
         }

@@ -67,10 +67,10 @@ async function submit_adv(){
     formData.append('advLink', form.advLink);
 
     await axios.post(
-        '/admin/adv/edit',
+        '/Gamerscon2024/admin/adv/edit',
         formData
     ).then( response => {
-        window.location.href='/admin/adv'
+        window.location.href='/Gamerscon2024/admin/adv'
     }).catch( error => {
         let msgs = error.response.data.errors;
          formItem.forEach(function(item){
@@ -89,7 +89,7 @@ async function uploadPic(e){
     const formData = new FormData();
     formData.append('file', objImg);
     formData.append('position', props.position);
-    await axios.post('/admin/adv/picUpload',formData, {
+    await axios.post('/Gamerscon2024/admin/adv/picUpload',formData, {
         headers:{
             'Content-Type': 'multipart/form-data'
         }

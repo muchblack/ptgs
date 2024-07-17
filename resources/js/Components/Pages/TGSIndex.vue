@@ -19,7 +19,7 @@
                   <a href="/">首頁</a>
               </li>
               <li>
-                  <a href="/newsList/1">電競電玩展快訊</a>
+                  <a href="/Gamerscon2024/newsList/1">電競電玩展快訊</a>
               </li>
               <li>
                 <a href="#picWall" class="">活動照片</a>
@@ -33,7 +33,7 @@
                   <a href="/">首頁</a>
               </li>
               <li>
-                  <a href="/newsList/1">電競電玩展快訊</a>
+                  <a href="/Gamerscon2024/newsList/1">電競電玩展快訊</a>
               </li>
               <li>
                   <a href="#picWall" class="">活動照片</a>
@@ -69,7 +69,7 @@
         </div>
         <div class="news_container">
           <div class="news_card" v-for="news in newsList">
-            <a :href="'/newsDetail/'+ news.id">
+            <a :href="'/Gamerscon2024/newsDetail/'+ news.id">
               <img
                 loading="lazy"
                 decoding="async"
@@ -91,7 +91,7 @@
             </a>
           </div>
           <div class="more_news_btn">
-            <a href="/newsList/1">更多Gamers Con 2024快訊</a>
+            <a href="/Gamerscon2024/newsList/1">更多Gamers Con 2024快訊</a>
           </div>
         </div>
         <div class="right_AD">

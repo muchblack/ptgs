@@ -38,7 +38,6 @@ class ProjectInit extends Command
         $contents = $disk->get('white.jpg');
         Storage::disk('advImg')->put('/white.jpg', $contents);
         $url = env('APP_URL').'/storage/advImg/white.jpg';
-        echo $url."\n";
 
         //塞資料庫
         $advPosition = ['LU', 'LD', 'RU', 'RD', 'IU', 'PD', 'DD'];
@@ -60,21 +59,36 @@ class ProjectInit extends Command
         $indexBanner = $disk->get('index.jpeg');
         Storage::disk('indexSet')->put('/index.jpeg', $indexBanner);
         $indexUrl = env('APP_URL').'/storage/indexSet/index.jpeg';
+        $objIndex = IndexSet::where('position', 'index')->first();
+        if($objIndex)
+        {
+            $objIndex->url = $indexUrl;
+            $objIndex->save();
+        }
+        else {
 //        echo $indexUrl."\n";
-        IndexSet::create([
-            'position' => 'index',
-            'url' => $indexUrl,
-        ]);
+            IndexSet::create([
+                'position' => 'index',
+                'url' => $indexUrl,
+            ]);
+        }
 
         $innerBanner = $disk->get('inner.jpeg');
         Storage::disk('indexSet')->put('/inner.jpeg', $innerBanner);
-        $innerUrl = env('APP_URL').'/storage/indexSet/index.jpeg';
+        $innerUrl = env('APP_URL').'/storage/indexSet/inner.jpeg';
+        $objInner = IndexSet::where('position', 'inner')->first();
+        if($objInner)
+        {
+            $objInner->url = $innerUrl;
+            $objInner->save();
+        }
+        else {
 //        echo $innerUrl."\n";
-        IndexSet::create([
-            'position' => 'inner',
-            'url' => $innerUrl,
-        ]);
-
+            IndexSet::create([
+                'position' => 'inner',
+                'url' => $innerUrl,
+            ]);
+        }
         //虛擬頭像
         $avatar = $disk->get('/avatars/1.png');
         Storage::disk('indexSet')->put('/avatars/1.png', $avatar);

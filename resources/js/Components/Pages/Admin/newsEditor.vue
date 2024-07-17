@@ -85,7 +85,7 @@ export default{
             formData.append('newsContent', this.newsContent);
             formData.append('newsPicUrl', this.newsPicUrl);
             formData.append('newsID', this.data.id ?? 0);
-            await axios.post('/admin/news/add',
+            await axios.post('/Gamerscon2024/admin/news/add',
                 formData,
                 {
                     headers: {
@@ -94,7 +94,7 @@ export default{
                 }
             ).then(
                 (response) => {
-                    location.href='/admin/news'
+                    location.href='/Gamerscon2024/admin/news'
                 }
             )
         },
@@ -102,7 +102,7 @@ export default{
             const objImg = e.target.files.item(0);
             const formData = new FormData();
             formData.append('file', objImg);
-            await axios.post('/admin/news/picUpload',formData, {
+            await axios.post('/Gamerscon2024/admin/news/picUpload',formData, {
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }
@@ -117,7 +117,7 @@ const handleImageUpload =  (blobInfo, progress) => new Promise((resolve, reject)
     const csrf = document.getElementById('_csrf').value;
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = false;
-    xhr.open('POST', '/admin/news/picUpload');
+    xhr.open('POST', '/Gamerscon2024/admin/news/picUpload');
     xhr.setRequestHeader('X-CSRF-TOKEN', csrf);
 
     xhr.upload.onprogress = (e) => {
