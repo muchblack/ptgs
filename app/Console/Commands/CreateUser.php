@@ -32,12 +32,21 @@ class CreateUser extends Command
         $userName = explode('@', $email)[0];
         $password = $this->argument('password');
 
-        Users::create([
-            'email' => $email,
-            'password' => Hash::make($password),
-            'userName' => $userName,
-        ]);
+        $user = User::where('email', $email)->first();
 
-        echo "create User Success;";
+        if($user)
+        {
+            echo "User Already Exists.\n";
+        }
+        else
+        {
+            Users::create([
+                'email' => $email,
+                'password' => Hash::make($password),
+                'userName' => $userName,
+            ]);
+
+            echo "create User Success\n";
+        }
     }
 }
