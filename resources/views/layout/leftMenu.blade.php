@@ -21,7 +21,7 @@
             <span class="menu-header-text">新聞</span>
         </li>
         <li class="menu-item">
-            <a href="/admin/news" class="menu-link">
+            <a href="/Gamerscon2024/admin/news" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-newspaper"></i>
                 <div data-i18n="Basic">新聞列表</div>
             </a>
@@ -30,13 +30,13 @@
             <span class="menu-header-text">廣告</span>
         </li>
         <li class="menu-item">
-            <a href="/admin/adv" class="menu-link">
+            <a href="/Gamerscon2024/admin/adv" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-advertisements"></i>
                 <div data-i18n="Basic">廣告列表</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="/admin/yt" class="menu-link">
+            <a href="/Gamerscon2024/admin/yt" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-youtube-tv"></i>
                 <div data-i18n="Basic">首頁影片</div>
             </a>
@@ -45,7 +45,7 @@
             <span class="menu-header-text">照片牆</span>
         </li>
         <li class="menu-item">
-            <a href="/admin/picWall/" class="menu-link">
+            <a href="/Gamerscon2024/admin/picWall/" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-panorama-variant-outline"></i>
                 <div data-i18n="Basic">照片列表</div>
             </a>
@@ -54,7 +54,7 @@
             <span class="menu-header-text">設定</span>
         </li>
         <li class="menu-item">
-            <a href="/admin/indexSet/" class="menu-link">
+            <a href="/Gamerscon2024/admin/indexSet/" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-panorama-variant-outline"></i>
                 <div data-i18n="Basic">頁面設定</div>
             </a>

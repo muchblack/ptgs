@@ -32,7 +32,7 @@ class CreateUser extends Command
         $userName = explode('@', $email)[0];
         $password = $this->argument('password');
 
-        $user = User::where('email', $email)->first();
+        $user = Users::where('email', $email)->first();
 
         if($user)
         {

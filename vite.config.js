@@ -7,7 +7,7 @@ export default defineConfig({
         host: true,
         port: 5173,
         hmr: {
-            host: ''
+            host: 'project-tgs.pri'
         },
         // watch:{
         //     usePolling: true

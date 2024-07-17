@@ -28,7 +28,7 @@ Route::prefix('Gamerscon2024')->group(function() {
     Route::post('/admin/login', [AdminController::class, 'actLogin']);
     Route::get('/admin/logout', function(){
         Auth::logout();
-        return redirect('/admin/login');
+        return redirect('/Gamerscon2024/admin/login');
     });
     Route::prefix('admin')->middleware([CheckUserLogin::class])->group(function() {
         //新聞

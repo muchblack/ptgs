@@ -39,7 +39,7 @@
                             <div class="dropdown-divider my-1"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/admin/logout">
+                            <a class="dropdown-item" href="/Gamerscon2024/admin/logout">
                                 <i class="mdi mdi-power me-1 mdi-20px"></i>
                                 <span class="align-middle">登出</span>
                             </a>

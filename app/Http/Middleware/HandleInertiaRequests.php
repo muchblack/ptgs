@@ -42,11 +42,11 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request)
     {
-        if( ($request->path() === 'admin/login') ) {
+        if( ($request->path() === 'Gamerscon2024/admin/login') ) {
             return 'login';
         }
 
-        if($request->route()->getPrefix() === '/admin')
+        if($request->route()->getPrefix() === 'Gamerscon2024/admin')
         {
             return 'admin';
         }
